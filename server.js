@@ -142,7 +142,7 @@ async function gracefulShutdown(signal) {
       }
 
       try {
-        await pool.end();
+        await db.close();
         console.log('Database pool closed');
       } catch (dbError) {
         console.error('Error closing database pool:', dbError);
@@ -151,7 +151,7 @@ async function gracefulShutdown(signal) {
     });
   } else {
     try {
-      await pool.end();
+      await db.close();
       console.log('Database pool closed');
     } catch (error) {
       console.error('Error closing database pool:', error);
